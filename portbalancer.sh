@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Portbalancer Version 1.1
-#Authors: alexis.e.aguirre@gds.ey.com | diego.s.villegas@gds.ey.com
+#Author: alexis.e.aguirre@gds.ey.com
 
 #Credentials
 echo ""
