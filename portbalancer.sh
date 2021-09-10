@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Portbalancer Version 1.1
-#Author: alexis.e.aguirre@gds.ey.com
+#Author: ae.aguirre@hotmail.com
 
 #Credentials
 echo ""
@@ -59,7 +59,7 @@ echo ""
         
 	        #Quantity of usage ports by wwpn
 	        cat /tmp/solowwpn.txt |while read a
-                   do
+                  do
                    cat /tmp/cfgactvshow_$ip.txt |grep -i $a |wc -l >> /tmp/qty.txt; done
 
                 #Show results in console
