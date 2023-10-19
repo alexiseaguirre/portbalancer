@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Portbalancer Version 1.1
+#Portbalancer Version 1.2
 #Author: ae.aguirre@hotmail.com
 
 #Credentials
@@ -38,7 +38,7 @@ echo ""
         then        
 	#Collect Logs
 	echo -n "Gathering info....."
-        echo ""
+    echo ""
 	sshpass -p $pass ssh $user@$ip alishow |grep -i alias| grep -i $alistor > /tmp/alias_$alistor.txt
 	sshpass -p $pass ssh $user@$ip cfgactvshow > /tmp/cfgactvshow_$ip.txt
 	
@@ -61,20 +61,17 @@ echo ""
 	        cat /tmp/solowwpn.txt |while read a
                   do
                    cat /tmp/cfgactvshow_$ip.txt |grep -i $a |wc -l >> /tmp/qty.txt; done
-
-                #Show results in console
-		echo ""
-	        (printf "Aliases WWPN Quantity-Ports\n" \; 
-		paste <(awk '{print $2}' /tmp/soloalias.txt ) <(awk '{print $1 $2}' /tmp/solowwpn.txt ) <(awk '{print $1}' /tmp/qty.txt ) |sed 1d) | column -t
-             
+            #Show results in console with columns automatically
+		    paste  -d'\t' <(printf "%s\n" "Aliases"; awk '{print $2}' /tmp/soloalias.txt) \
+		                  <(printf "%s\n" "WWPN"; sed 's/^[[:space:]]*//' /tmp/solowwpn.txt) \
+		                  <(printf "%s\n" "Quantity-Ports"; awk '{print $1}' /tmp/qty.txt) | column -t -s $'\t'
             else
                  echo "Invalid Username or Password"
               exit	
-	     fi   
-    
-    else
-        exit 
-fi
+	        fi   
+        else
+     exit 
+    fi
 
 #Garabage collector
 del="rm -r"
@@ -92,3 +89,5 @@ f="/tmp/qty.txt"
 	      else :
 	    fi
     done
+
+#TODO Check if input is valid
