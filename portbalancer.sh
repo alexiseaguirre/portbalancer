@@ -62,6 +62,7 @@ echo ""
                   do
                    cat /tmp/cfgactvshow_$ip.txt |grep -i $a |wc -l >> /tmp/qty.txt; done
             #Show results in console with columns automatically
+            echo -e "\n"
 		    paste  -d'\t' <(printf "%s\n" "Aliases"; awk '{print $2}' /tmp/soloalias.txt) \
 		                  <(printf "%s\n" "WWPN"; sed 's/^[[:space:]]*//' /tmp/solowwpn.txt) \
 		                  <(printf "%s\n" "Quantity-Ports"; awk '{print $1}' /tmp/qty.txt) | column -t -s $'\t'
