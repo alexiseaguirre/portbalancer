@@ -1,2 +1,2 @@
 # Portbalancer
-Intented to check quantity of usage ports by WWPN in Brocade SAN Switches
+Can use for checking the quantity of usage ports by WWPN in Brocade SAN Switches
